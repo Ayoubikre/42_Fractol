@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/06 15:11:42 by noctis           ###   ########.fr       */
+/*   Updated: 2025/03/07 09:14:48 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string.h>
 
 #include "./mlx_Linux/mlx.h"
-#include "./mlx_Linux/mlx_int.h"
+#include "./mlx/mlx.h"
 
 typedef struct s_nbr
 {
