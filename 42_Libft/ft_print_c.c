@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/11/09 21:52:44 by aakritah          #+#    #+#             */
+/*   Updated: 2025/02/08 19:00:51 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+int	ft_print_c(char c, va_list ptr)
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
-
-#endif
+	if (c == '%')
+	{
+		ft_putchar('%');
+		return (1);
+	}
+	ft_putchar(va_arg(ptr, int));
+	return (1);
+}

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/10/24 15:11:45 by aakritah          #+#    #+#             */
+/*   Updated: 2024/11/02 13:17:04 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
+	size_t				i;
+	const unsigned char	*t1;
+	const unsigned char	*t2;
 
-#endif
+	i = 0;
+	t1 = (const unsigned char *)s1;
+	t2 = (const unsigned char *)s2;
+	while (i < n && t1[i] == t2[i])
+		i++;
+	if (i == n)
+		return (0);
+	return (t1[i] - t2[i]);
+}

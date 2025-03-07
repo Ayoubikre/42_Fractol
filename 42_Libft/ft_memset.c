@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/10/24 15:09:12 by aakritah          #+#    #+#             */
+/*   Updated: 2024/10/24 16:49:19 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+void	*ft_memset(void *b, int c, size_t len)
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
+	size_t			i;
+	unsigned char	*t;
 
-#endif
+	t = b;
+	i = 0;
+	while (i < len)
+		t[i++] = (unsigned char)c;
+	return (b);
+}

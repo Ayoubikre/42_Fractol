@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/10/29 20:12:04 by aakritah          #+#    #+#             */
+/*   Updated: 2024/11/05 11:01:44 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
+	t_list	*t;
+	t_list	*n;
+	void	*temp;
 
-#endif
+	if (!lst || !f || !del)
+		return (NULL);
+	t = NULL;
+	while (lst)
+	{
+		temp = f(lst->content);
+		n = ft_lstnew(temp);
+		if (!n)
+		{
+			del(temp);
+			ft_lstclear(&t, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&t, n);
+		lst = lst->next;
+	}
+	return (t);
+}

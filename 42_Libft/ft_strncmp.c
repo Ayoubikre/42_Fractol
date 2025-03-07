@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/10/23 21:24:31 by aakritah          #+#    #+#             */
+/*   Updated: 2024/11/01 20:33:17 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
+	size_t	i;
 
-#endif
+	i = 0;
+	while (i < n && s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

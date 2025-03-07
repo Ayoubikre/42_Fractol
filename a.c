@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   a.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:38:52 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 04:08:17 by noctis           ###   ########.fr       */
+/*   Updated: 2025/03/07 09:24:55 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int main()
+int main(int ac, char ** ar)
 {
-    int i=6;
-    printf("%d",i);
-    void *t=mlx_init();
-    void *t2=mlx_new_window(t,500,500,"test");
-    void *t3=mlx_new_window(t,500,500,"sdfsf");
-    mlx_loop(t);
+    // if(() || ())
+    // {
+        
+    // }
+    // else
+    // {
+    //     ft_write
+    // }
+    ft_putstr_fd("hello",1);
 }
 

@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/10/24 14:25:51 by aakritah          #+#    #+#             */
+/*   Updated: 2024/11/01 21:28:06 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
+	size_t	i;
+	size_t	s1;
+	size_t	s2;
 
-#endif
+	s1 = ft_strlen(src);
+	if (!dst && dstsize == 0)
+		return (s1);
+	s2 = ft_strlen(dst);
+	if (dstsize <= s2)
+		return (dstsize + s1);
+	i = 0;
+	while (src[i] && s2 + i < dstsize - 1)
+	{
+		dst[s2 + i] = src[i];
+		i++;
+	}
+	dst[s2 + i] = '\0';
+	return (s1 + s2);
+}

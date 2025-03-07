@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:05:08 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/07 09:25:41 by aakritah         ###   ########.fr       */
+/*   Created: 2024/10/25 18:52:05 by aakritah          #+#    #+#             */
+/*   Updated: 2024/11/04 14:05:07 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "libft.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <string.h>
-#include "./42_Libft/libft.h"
-#include "main.h"
-
-// #include "./mlx_Linux/mlx.h"
-#include "./mlx/mlx.h"
-
-typedef struct s_nbr
+char	*ft_strdup(const char *s1)
 {
-    int real;
-    int ig;
-    
-}   t_nbr;
+	size_t	i;
+	size_t	s;
+	char	*t;
 
-#endif
+	s = ft_strlen(s1);
+	t = malloc((s + 1) * 1);
+	if (!t)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		t[i] = s1[i];
+		i++;
+	}
+	t[i] = '\0';
+	return (t);
+}
