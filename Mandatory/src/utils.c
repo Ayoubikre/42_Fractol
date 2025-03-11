@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 10:31:44 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/11 15:23:03 by aakritah         ###   ########.fr       */
+/*   Created: 2025/03/11 15:46:56 by aakritah          #+#    #+#             */
+/*   Updated: 2025/03/11 15:47:48 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../main.h"
 
-
-int main(int ac, char **ar)
+double ft_map_x(int x, t_list2 *data)
 {
-   
-    t_list2 data;
-    
-    ft_arguments(ac , ar, &data);
-    ft_initialize(&data);
-    if(data.f==1)
-        ft_render_mandelbrot(&data);
-    // else
-    //     ft_render_mandelbroad(&data);
-    mlx_event(&data);
-    mlx_loop(data.ptr);
-    return 0;
+	return (data->min_r + (x * (data->max_r * 2) / (WIDTH - 1)));
 }
 
-void leaks()
+double	ft_map_y(int y, t_list2 *data)
 {
-    system("leaks fractol");
+	return (data->min_i + (y * (data->max_i * 2) / (HEIGHT - 1)));
+}
+
+void ft_colore(t_list2 *data)
+{
+    if(data->k== ITTER)
+        *(unsigned int *)data->t =0x000000;
+    else
+        *(unsigned int *)data->t = data->k * 0x050109;
 }

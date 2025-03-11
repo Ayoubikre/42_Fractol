@@ -43,8 +43,14 @@ double	map_y(int y, int height,t_list2 *data)
 	return (data->min_i + (y * (data->max_i *2) / (height - 1)));
 }
 
+void leaks()
+{
+	system("leaks fractol");
+}
+
 int	main(int ac, char **ar)
 {
+	atexit(leaks);
 	t_list2	data;
 	t_nbr	c;
 	t_nbr	z;
@@ -98,6 +104,8 @@ int	main(int ac, char **ar)
 		}
 		mlx_put_image_to_window(data.ptr, data.ptr_win, data.ptr_img, 0, 0);
 		mlx_key_hook(data.ptr_win, key_press, &data);
+		mlx_hook(data.ptr_win, 2, 0, key_press, &data);
+		mlx_hook(data.ptr_win, 17, 0, close_window, &data);
 		mlx_mouse_hook(data.ptr_win, mouse_func, &data);
 		mlx_loop(data.ptr);
 	}
@@ -225,9 +233,9 @@ int	get_color(int iteration, int max_iter)
 
 int	key_press(int key, t_list2 *data)
 {
-	if (key == 120)
+	if (key == ESC_KEY)
 		close_window(data);
-	else if(key == 65362)
+	else if(key == UP_KEY)
 		printf("Up arrow pressed!\n");
 	return (0);
 }
@@ -236,7 +244,6 @@ int	close_window(t_list2 *data)
 {
 	mlx_destroy_window(data->ptr, data->ptr_win);
 	mlx_destroy_image(data->ptr, data->ptr_img);
-		mlx_destroy_display(data->ptr);
 	free(data->ptr);
 	exit(0);
 }
