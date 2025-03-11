@@ -2,9 +2,15 @@ CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 CFLAGS = -Wall
 
-# SRC = a.c r.c
-SRC = t.c
+# SRC = ./Mandatory/src/main.c
+SRC = a.c r.c
+# SRC = f.c
+
 OBJ = $(SRC:.c=.o)
+
+includs = main.h
+# includs = /Mandatory/main.h
+
 
 libft_DIR = ./42_Libft
 libft = $(libft_DIR)/libft.a
@@ -21,7 +27,7 @@ all: $(NAME) clean
 # #	make -c $(libft_DIR)
 # 	$(CC) $(CFLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(libft)
 
-# %.o: %.c main.h $(libft_DIR)/libft.h
+# %.o: %.c $(includs) $(libft_DIR)/libft.h
 # 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 # clean: 
@@ -34,15 +40,15 @@ all: $(NAME) clean
 
 $(NAME): $(OBJ)
 #	make -C $(libft_DIR)
-	make -C mlx_Linux
+#	make -C mlx_Linux
 	$(CC) $(CFLAGS) $(OBJ) -Lmlx_Linux -l:libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(libft)
 
-%.o: %.c main.h $(libft_DIR)/libft.h
+%.o: %.c $(includs) $(libft_DIR)/libft.h
 	$(CC) $(CFLAGS)  -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean: 
 #	make -C $(libft_DIR) clean
-	make -C mlx_Linux  clean
+#	make -C mlx_Linux  clean
 	rm -rf $(OBJ)
 
 #-----------------------------------------------------------------------------------------
