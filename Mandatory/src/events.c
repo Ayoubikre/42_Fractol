@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:25:38 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/11 13:50:22 by aakritah         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:32:21 by noctis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int close_window(t_list2 *data)
 {
     mlx_destroy_window(data->ptr, data->ptr_win);
     mlx_destroy_image(data->ptr, data->ptr_img);
-    // if(LX==1)
-    //     mlx_destroy_display(data->ptr);
-
+    if(LX==1)
+        mlx_destroy_display(data->ptr);
+    
     ft_exit(data);
     return(0);
 }

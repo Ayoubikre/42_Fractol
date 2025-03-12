@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:28:18 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/11 15:50:42 by aakritah         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:59:31 by noctis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
 #include "../42_Libft/libft.h"
 #include "main.h"
 
-// #include "../mlx_Linux/mlx.h"
-#include "../mlx/mlx.h"
+#include "../mlx_Linux/mlx.h"
+// #include "../mlx/mlx.h"
 
 #define WIDTH 1200
 #define HEIGHT 900 
 #define ITTER 1000
 
 #ifdef __linux__
-// #define LX 1
+#define LX 1
 #define ESC 65307
 #define up 65362
 #else
-// #define LX 0
+#define LX 0
 #define ESC 53
 #define up 126
 #endif 
@@ -59,7 +59,7 @@ typedef struct s_list2
 	int k;
 	int x;
 	int y;
-	
+	double *vl[2];
 
 
 	// mlx :
@@ -86,14 +86,14 @@ void leaks();
 
 
 void ft_arguments(int ac, char **ar, t_list2 *data);
-void	ft_message(void);
+void	ft_message(int f);
 
 
 void    ft_initialize(t_list2 *data);
 
 
 void	ft_render_mandelbrot(t_list2 *data);
-void ft_calcul(t_list2 *data);
+void	ft_render_julia(t_list2 *data);
 
 
 double	ft_map_x(int x,t_list2 *data);

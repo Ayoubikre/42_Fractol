@@ -12,7 +12,7 @@
 
 #include "../main.h"
 
-void	ft_calcul(t_list2 *data)
+static void	ft_calcul(t_list2 *data)
 {
 	t_nbr	z;
 	t_nbr	c;
