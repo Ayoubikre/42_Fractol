@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:40:02 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/14 15:35:51 by aakritah         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:00:59 by noctis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define MAIN_H
 
 # include "./42_Libft/libft.h"
-# include "./mlx/mlx.h"
+// # include "./mlx/mlx.h"
+# include "./mlx_Linux/mlx.h"
 # include "main.h"
 # include <math.h>
 # include <unistd.h>
@@ -22,11 +23,22 @@
 # define WIDTH 500
 # define HEIGHT 400
 # define ITTER 60
-# define ESC 53
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
+
+# ifdef __linux__
+#  define LX 1
+#  define ESC 65307
+#  define LEFT 65361
+#  define RIGHT 65363
+#  define DOWN 65364
+#  define UP 65362
+# else
+#  define LX 0
+#  define ESC 53
+#  define LEFT 123
+#  define RIGHT 124
+#  define DOWN 125
+#  define UP 126
+# endif
 
 typedef struct s_nbr
 {
