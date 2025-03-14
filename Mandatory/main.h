@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:28:18 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/12 15:50:24 by aakritah         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:34:23 by noctis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@
 # include <unistd.h>
 // #include "../mlx/mlx.h"
 
-# define WIDTH 1200
-# define HEIGHT 900
-# define ITTER 100
+// # define WIDTH 1200
+// # define HEIGHT 900
+# define WIDTH 800
+# define HEIGHT 600
+
+# define ITTER 50
 
 # ifdef __linux__
 #  define LX 1
@@ -63,12 +66,13 @@ typedef struct s_list2
 	int		x;
 	int		y;
 	int		f;
-	int mouse_x;
-	int mouse_y;
+	int 	offset_x;
+	int 	offset_y;
 	double	max_r;
 	double	min_r;
 	double	max_i;
 	double	min_i;
+
 	double	vr[2];
 
 	// mlx :
@@ -82,6 +86,8 @@ typedef struct s_list2
 
 	// events:
 	double zoom;
+	double	center_x;
+	double	center_y;
 	double range_x;
 	double range_y;
 	
@@ -110,6 +116,6 @@ void		ft_exit(t_list2 *data);
 void mlx_event(t_list2 *data);
 int close_window(t_list2 *data);
 int key_press(int key, t_list2 *data);
-int mouse_wheel(int button, int x, int y , t_list2* data);
+int mouse_hook(int button, int x, int y , t_list2* data);
 
 #endif
