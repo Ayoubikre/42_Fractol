@@ -1,181 +1,136 @@
 
-void mlx_event(t_list2 *data)
+
+// #endif
+
+// // Initialize MiniLibX and set default Julia parameters
+// void init_fractol(t_data *data)
+// {
+//     data->mlx = mlx_init();
+//     if (!data->mlx)
+//         exit(1);
+//     data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Julia Fractal");
+//     if (!data->win)
+//         exit(1);
+//     data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+//     if (!data->img)
+//         exit(1);
+//     data->img_data = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+// &data->size_line, &data->endian);
+//     data->zoom = 1.0;         // Initial zoom level
+//     data->c_real = -0.7;      // Default Julia constant
+//     data->c_imag = 0.27015;
+//     data->offset_x = 0.0;     // Center of complex plane
+//     data->offset_y = 0.0;
+// }
+
+// // Put pixel color into image buffer
+// void put_pixel(t_data *data, int x, int y, int color)
+// {
+//     if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+//     {
+//         char *dst = data->img_data + (y * data->size_line) + (x
+// * (data->bits_per_pixel / 8));
+//         *(unsigned int *)dst = color;
+//     }
+// }
+
+// // Render Julia fractal
+// void render_julia(t_data *data)
+// {
+//     int x, y, iter;
+//     double z_r, z_i, c_r, c_i, tmp;
+
+//     y = 0;
+//     while (y < HEIGHT)
+//     {
+//         x = 0;
+//         while (x < WIDTH)
+//         {
+//             // Map pixel to complex plane with zoom and offset
+//             z_r = (x - WIDTH / 2.0) / (0.25 * data->zoom * WIDTH)
+// + data->offset_x;
+//             z_i = (y - HEIGHT / 2.0) / (0.25 * data->zoom * HEIGHT)
+// + data->offset_y;
+//             c_r = data->c_real;
+//             c_i = data->c_imag;
+
+//             // Julia iteration
+//             iter = 0;
+//             while (z_r * z_r + z_i * z_i <= 4.0 && iter < MAX_ITER)
+//             {
+//                 tmp = z_r * z_r - z_i * z_i + c_r;
+//                 z_i = 2 * z_r * z_i + c_i;
+//                 z_r = tmp;
+//                 iter++;
+//             }
+
+//             // Color based on iterations
+//             if (iter == MAX_ITER)
+//                 put_pixel(data, x, y, 0x000000); // Black for inside set
+//             else
+//                 put_pixel(data, x, y, iter * 0x10101);
+// Grayscale for outside
+//             x++;
+//         }
+//         y++;
+//     }
+//     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+// }
+
+// // Mouse hook for zooming
+// int mouse_hook(int button, int x, int y, t_data *data)
+// {
+//     if (button == 4) // Zoom in
+//         data->zoom *= 1.1;
+//     else if (button == 5) // Zoom out
+//         data->zoom *= 0.9;
+//     render_julia(data);
+//     return (0);
+// }
+
+// // Key hook for exit
+// int key_hook(int keycode, t_data *data)
+// {
+//     if (keycode == 53) // ESC key (macOS keycode)
+//     {
+//         mlx_destroy_image(data->mlx, data->img);
+//         mlx_destroy_window(data->mlx, data->win);
+//         exit(0);
+//     }
+//     return (0);
+// }
+
+// // Main function
+// int main(void)
+// {
+//     t_data data;
+
+//     init_fractol(&data);
+//     render_julia(&data);
+//     mlx_mouse_hook(data.win, mouse_hook, &data);
+//     mlx_key_hook(data.win, key_hook, &data);
+//     mlx_loop(data.mlx);
+//     return (0);
+// }
+
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+double	ft_atof(char *t)
 {
-    mlx_hook(data->ptr_win, 17, 0, close_window, data);  // DestroyNotify
-    mlx_hook(data->ptr_win, 2, 1L << 0, key_press, data);  // KeyPress
-    mlx_hook(data->ptr_win, 6, 1L << 6, mouse_move, data);  // MotionNotify
-    mlx_hook(data->ptr_win, 4, 1L << 2, mouse_click, data);  // ButtonPress
+
 }
 
-int close_window(t_list2 *data)
+#include <stdio.h>
+
+int main()
 {
-    ft_exit(data);
-    return (0);
-}
-
-int key_press(int keycode, t_list2 *data)
-{
-    double r_range = data->max_r - data->min_r;
-    double i_range = data->max_i - data->min_i;
-    double shift = r_range * 0.1;  // 10% of view
-
-    if (keycode == ESC)
-        close_window(data);
-    else if (keycode == UP)
-    {
-        data->max_i -= shift;
-        data->min_i -= shift;
-    }
-    else if (keycode == DOWN)
-    {
-        data->max_i += shift;
-        data->min_i += shift;
-    }
-    else if (keycode == LEFT)
-    {
-        data->max_r -= shift;
-        data->min_r -= shift;
-    }
-    else if (keycode == RIGHT)
-    {
-        data->max_r += shift;
-        data->min_r += shift;
-    }
-    else if (keycode == PLUS)
-    {
-        double new_r_range = r_range * 0.8;  // Zoom in 20%
-        double new_i_range = i_range * 0.8;
-        double r_center = (data->max_r + data->min_r) / 2;
-        double i_center = (data->max_i + data->min_i) / 2;
-        data->max_r = r_center + new_r_range / 2;
-        data->min_r = r_center - new_r_range / 2;
-        data->max_i = i_center + new_i_range / 2;
-        data->min_i = i_center - new_i_range / 2;
-    }
-    else if (keycode == MINUS)
-    {
-        double new_r_range = r_range / 0.8;  // Zoom out 20%
-        double new_i_range = i_range / 0.8;
-        double r_center = (data->max_r + data->min_r) / 2;
-        double i_center = (data->max_i + data->min_i) / 2;
-        data->max_r = r_center + new_r_range / 2;
-        data->min_r = r_center - new_r_range / 2;
-        data->max_i = i_center + new_i_range / 2;
-        data->min_i = i_center - new_i_range / 2;
-    }
-    ft_render(data);  // Redraw after each event
-    return (0);
-}
-
-int mouse_move(int x, int y, t_list2 *data)
-{
-    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-    {
-        data->mouse_x = x;
-        data->mouse_y = y;
-    }
-    return (0);
-}
-
-int mouse_click(int button, int x, int y, t_list2 *data)
-{
-    double r_range = data->max_r - data->min_r;
-    double i_range = data->max_i - data->min_i;
-    double r_click = ft_map_x(x, data);
-    double i_click = ft_map_y(y, data);
-
-    if (button == 4)  // Scroll up - zoom in
-    {
-        double new_r_range = r_range * 0.8;
-        double new_i_range = i_range * 0.8;
-        data->max_r = r_click + new_r_range / 2;
-        data->min_r = r_click - new_r_range / 2;
-        data->max_i = i_click + new_i_range / 2;
-        data->min_i = i_click - new_i_range / 2;
-    }
-    else if (button == 5)  // Scroll down - zoom out
-    {
-        double new_r_range = r_range / 0.8;
-        double new_i_range = i_range / 0.8;
-        data->max_r = r_click + new_r_range / 2;
-        data->min_r = r_click - new_r_range / 2;
-        data->max_i = i_click + new_i_range / 2;
-        data->min_i = i_click - new_i_range / 2;
-    }
-    ft_render(data);  // Redraw after zoom
-    return (0);
-}
-
-
-
-
-
-...........
-
-
-
-
-/* Existing includes and code remain unchanged */
-
-void mlx_event(t_list2 *data)
-{
-    mlx_hook(data->ptr_win, 17, 0, close_window, data); // Window close button
-    mlx_hook(data->ptr_win, 2, 1L<<0, key_press, data); // Key press
-    mlx_mouse_hook(data->ptr_win, mouse_wheel, data);   // Mouse wheel
-}
-
-int close_window(t_list2 *data)
-{
-    mlx_destroy_image(data->ptr, data->ptr_img);
-    mlx_destroy_window(data->ptr, data->ptr_win);
-    mlx_destroy_display(data->ptr); // Linux-specific
-    free(data->ptr);
-    exit(0);
-    return (0);
-}
-
-int key_press(int keycode, t_list2 *data)
-{
-    if (keycode == ESC)
-    {
-        close_window(data);
-    }
-    return (0);
-}
-
-int mouse_wheel(int button, int x, int y, t_list2 *data)
-{
-    double zoom_factor = 0.1; // Adjust zoom sensitivity
-    double range_r = data->max_r - data->min_r;
-    double range_i = data->max_i - data->min_i;
-    if (button == 4) // Scroll up (zoom in)
-    {
-        data->max_r -= range_r * zoom_factor;
-        data->min_r += range_r * zoom_factor;
-        data->max_i -= range_i * zoom_factor;
-        data->min_i += range_i * zoom_factor;
-    }
-    else if (button == 5) // Scroll down (zoom out)
-    {
-        data->max_r += range_r * zoom_factor;
-        data->min_r -= range_r * zoom_factor;
-        data->max_i += range_i * zoom_factor;
-        data->min_i -= range_i * zoom_factor;
-    }
-    ft_render(data); // Re-render after zooming
-    return (0);
-}
-
-void ft_exit(t_list2 *data)
-{
-    if (data->ptr_img)
-        mlx_destroy_image(data->ptr, data->ptr_img);
-    if (data->ptr_win)
-        mlx_destroy_window(data->ptr, data->ptr_win);
-    if (data->ptr)
-    {
-        mlx_destroy_display(data->ptr); // Linux-specific
-        free(data->ptr);
-    }
-    exit(1);
+    printf("%f\n", ft_atof(""));     // Expected: 42.195
+    printf("%f\n", ft_atof("  -3.14"));    // Expected: -3.140000
+    printf("%f\n", ft_atof("0.00123"));    // Expected: 0.001230
+    printf("%f\n", ft_atof("123"));        // Expected: 123.000000
+    printf("%f\n", ft_atof("+12.0"));      // Expected: 12.000000
+    return 0;
 }

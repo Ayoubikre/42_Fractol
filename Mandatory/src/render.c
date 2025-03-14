@@ -6,33 +6,37 @@
 /*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:45:57 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/13 11:00:40 by noctis           ###   ########.fr       */
+/*   Updated: 2025/03/14 07:17:20 by noctis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-void	ft_calcul(t_list2 *data)
+static void	ft_ar(t_nbr *z, t_nbr *c, t_list2 *data)
 {
-	// ( t_nbr z, t_nbr c, double tmp);
-	t_nbr z;
-	t_nbr c;
-	double tmp;
-	
 	if (data->f == 1)
 	{
-		z.r = 0;
-		z.i = 0;
-		c.r = ft_map_x(data->x, data);
-		c.i = ft_map_y(data->y, data);
+		z->r = 0;
+		z->i = 0;
+		c->r = ft_map_x(data->x, data);
+		c->i = ft_map_y(data->y, data);
 	}
 	else
 	{
-		z.r = ft_map_x(data->x, data);
-		z.i = ft_map_y(data->y, data);
-		c.r = data->vr[0];
-		c.i = data->vr[1];
+		z->r = ft_map_x(data->x, data);
+		z->i = ft_map_y(data->y, data);
+		c->r = data->vr[0];
+		c->i = data->vr[1];
 	}
+}
+
+void	ft_calcul(t_list2 *data)
+{
+	t_nbr	z;
+	t_nbr	c;
+	double	tmp;
+
+	ft_ar(&z, &c, data);
 	data->k = 0;
 	while (data->k < ITTER)
 	{

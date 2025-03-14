@@ -36,8 +36,8 @@
 #  define DOWN 65364
 #  define LEFT 65361
 #  define RIGHT 65363
-#  define PLUS 61 
-#  define MINUS 45  
+#  define PLUS 61
+#  define MINUS 45
 # else
 #  define LX 0
 #  define ESC 53
@@ -45,8 +45,8 @@
 #  define DOWN 125
 #  define LEFT 123
 #  define RIGHT 124
-#  define PLUS 24 
-#  define MINUS 27 
+#  define PLUS 24
+#  define MINUS 27
 # endif
 
 typedef struct s_nbr
@@ -66,8 +66,8 @@ typedef struct s_list2
 	int		x;
 	int		y;
 	int		f;
-	int 	offset_x;
-	int 	offset_y;
+	int		offset_x;
+	int		offset_y;
 	double	max_r;
 	double	min_r;
 	double	max_i;
@@ -85,12 +85,12 @@ typedef struct s_list2
 	int		endian;
 
 	// events:
-	double zoom;
+	double	zoom;
 	double	center_x;
 	double	center_y;
-	double range_x;
-	double range_y;
-	
+	double	range_x;
+	double	range_y;
+
 }			t_list2;
 
 // functions :
@@ -105,17 +105,17 @@ double		ft_atof(char *t);
 
 void		ft_initialize(t_list2 *data);
 
-void	ft_render(t_list2 *data);
-void	ft_calcul(t_list2 *data);
+void		ft_render(t_list2 *data);
+void		ft_calcul(t_list2 *data);
 
 double		ft_map_x(int x, t_list2 *data);
 double		ft_map_y(int y, t_list2 *data);
 void		ft_colore(t_list2 *data);
 void		ft_exit(t_list2 *data);
 
-void mlx_event(t_list2 *data);
-int close_window(t_list2 *data);
-int key_press(int key, t_list2 *data);
-int mouse_hook(int button, int x, int y , t_list2* data);
+void		mlx_event(t_list2 *data);
+int			close_window(t_list2 *data);
+int			key_press(int key, t_list2 *data);
+int			mouse_hook(int button, int x, int y, t_list2 *data);
 
 #endif
