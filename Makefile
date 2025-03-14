@@ -4,12 +4,14 @@ CC = cc
 CFLAGS = -Wall
 
 # SRC = a.c r.c
-SRC = ./Mandatory/src/main.c ./Mandatory/src/initialize.c ./Mandatory/src/arguments.c ./Mandatory/src/render.c ./Mandatory/src/events.c ./Mandatory/src/utils.c
+# SRC = ./Mandatory/src/main.c ./Mandatory/src/initialize.c ./Mandatory/src/arguments.c ./Mandatory/src/render.c ./Mandatory/src/events.c ./Mandatory/src/utils.c
+SRC = ./Bonus/src/main.c ./Bonus/src/initialize.c ./Bonus/src/arguments.c ./Bonus/src/render.c ./Bonus/src/events.c ./Bonus/src/utils.c
+
 
 OBJ = $(SRC:.c=.o)
 
 # includs = main.h
-includs = /Mandatory/main.h
+includs = /Bonus/main.h
 
 
 libft_DIR = ./42_Libft
