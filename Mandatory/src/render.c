@@ -3,31 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:45:57 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/14 07:17:20 by noctis           ###   ########.fr       */
+/*   Updated: 2025/03/14 12:05:10 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-static void	ft_ar(t_nbr *z, t_nbr *c, t_list2 *data)
+void	ft_render(t_list2 *data)
 {
-	if (data->f == 1)
+	data->x = 0;
+	while (data->x < WIDTH)
 	{
-		z->r = 0;
-		z->i = 0;
-		c->r = ft_map_x(data->x, data);
-		c->i = ft_map_y(data->y, data);
+		data->y = 0;
+		while (data->y < HEIGHT)
+		{
+			ft_calcul(data);
+			data->pixel = (data->y * data->bytes_per_row) + (data->x
+					* data->bytes_per_pixel / 8);
+			data->t = data->ptr_pxl + data->pixel;
+			ft_colore(data);
+			*(unsigned int *)data->t = ft_colore(data);
+			data->y++;
+		}
+		data->x++;
 	}
-	else
-	{
-		z->r = ft_map_x(data->x, data);
-		z->i = ft_map_y(data->y, data);
-		c->r = data->vr[0];
-		c->i = data->vr[1];
-	}
+	mlx_put_image_to_window(data->ptr, data->ptr_win, data->ptr_img, 0, 0);
 }
 
 void	ft_calcul(t_list2 *data)
@@ -49,22 +52,30 @@ void	ft_calcul(t_list2 *data)
 	}
 }
 
-void	ft_render(t_list2 *data)
+void	ft_ar(t_nbr *z, t_nbr *c, t_list2 *data)
 {
-	data->x = 0;
-	while (data->x < WIDTH)
+	if (data->f == 1)
 	{
-		data->y = 0;
-		while (data->y < HEIGHT)
-		{
-			ft_calcul(data);
-			data->pixel = (data->y * data->bytes_per_row) + (data->x
-					* data->bytes_per_pixel / 8);
-			data->t = data->ptr_pxl + data->pixel;
-			ft_colore(data);
-			data->y++;
-		}
-		data->x++;
+		z->r = 0;
+		z->i = 0;
+		c->r = ft_map_x(data->x, data);
+		c->i = ft_map_y(data->y, data);
 	}
-	mlx_put_image_to_window(data->ptr, data->ptr_win, data->ptr_img, 0, 0);
+	else
+	{
+		z->r = ft_map_x(data->x, data);
+		z->i = ft_map_y(data->y, data);
+		c->r = data->vr[0];
+		c->i = data->vr[1];
+	}
+}
+
+double	ft_map_x(int x, t_list2 *data)
+{
+	return ((x - WIDTH / 2.0) / (data->zoom * WIDTH));
+}
+
+double	ft_map_y(int y, t_list2 *data)
+{
+	return ((y - HEIGHT / 2.0) / (data->zoom * HEIGHT));
 }

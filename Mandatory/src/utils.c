@@ -3,54 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:46:56 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/13 09:54:15 by noctis           ###   ########.fr       */
+/*   Updated: 2025/03/14 12:07:59 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-// double	ft_map_x(int x, t_list2 *data)
-// {
-// 	return (data->min_r + (x * (data->max_r - data->min_r) / (WIDTH - 1)));
-// }
-
-// double	ft_map_y(int y, t_list2 *data)
-// {
-// 	return (data->min_i + (y * (data->max_i - data->min_i) / (HEIGHT - 1)));
-// }
-
-
-
-unsigned int 	ft_colore2(t_list2 *data)
+unsigned int	ft_colore(t_list2 *data)
 {
-	double	t;
-	int		r;
-	int		g;
-	int		b;
+	int	r;
+	int	g;
+	int	b;
 
-	t = (double)data->k / ITTER;
-	r = (int)(9 * (1 - t) * t * t * t * 255);
-	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-	b = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+	if (data->k == ITTER)
+		return (0x000000);
+	r = (data->k * 5) % 256;
+	g = (data->k * 10) % 256;
+	b = (data->k * 15) % 256;
 	return (r << 16 | g << 8 | b);
 }
 
-void	ft_colore(t_list2 *data)
+void	ft_message(int f)
 {
-	if (data->k == ITTER)
-		*(unsigned int *)data->t = 0x000000;
+	if (f == 1)
+		ft_printf("give a whidth value betwenn  -2 and 2");
+	else if (f == 2)
+		ft_printf("give a hight value betwenn -1.5 and 1.5");
 	else
-		*(unsigned int *)data->t = ft_colore2(data);
-		// *(unsigned int *)data->t = (data->k % 255) * 0x050109;
-}
-
-
-
-
-void ft_exit(t_list2 *data)
-{
-    exit(1);
+	{
+		ft_printf("-----------------------------------------------\n");
+		ft_printf("-                                             -\n");
+		ft_printf("-    Allowed arguments are :                  -\n");
+		ft_printf("-                                             -\n");
+		ft_printf("-         ./fractol mandelbrot                -\n");
+		ft_printf("-         ./fractol julia 'Width' 'Hight'     -\n");
+		ft_printf("-                                             -\n");
+		ft_printf("-----------------------------------------------\n");
+	}
+	exit(1);
 }

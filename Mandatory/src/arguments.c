@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 12:07:14 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/14 07:03:51 by noctis           ###   ########.fr       */
+/*   Created: 2025/03/14 11:39:12 by aakritah          #+#    #+#             */
+/*   Updated: 2025/03/14 12:07:38 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,4 @@ int	ft_check(char *t, char *ar)
 		&& (ft_strlen(t) == ft_strlen(ar)))
 		return (1);
 	return (0);
-}
-
-void	ft_message(int f)
-{
-	if (f == 1)
-		ft_printf("give a whidth value betwenn  -2 and 2");
-	else if (f == 2)
-		ft_printf("give a hight value betwenn -1.5 and 1.5");
-	else
-	{
-		ft_printf("-----------------------------------------------\n");
-		ft_printf("-                                             -\n");
-		ft_printf("-    Allowed arguments are :                  -\n");
-		ft_printf("-                                             -\n");
-		ft_printf("-         ./fractol mandelbrot                -\n");
-		ft_printf("-         ./fractol julia 'Width' 'Hight'     -\n");
-		ft_printf("-                                             -\n");
-		ft_printf("-----------------------------------------------\n");
-	}
-	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:21:10 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/14 06:35:08 by noctis           ###   ########.fr       */
+/*   Updated: 2025/03/14 11:30:59 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ void	ft_initialize(t_list2 *data)
 	data->min_r = -2.0;
 	data->max_i = 1.5;
 	data->min_i = -1.5;
-	data->zoom = 1.0;
-	data->center_x = 0.0;
-	data->center_y = 0.0;
+	data->zoom = 0.25;
 }

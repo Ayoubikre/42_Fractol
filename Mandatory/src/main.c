@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noctis <noctis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 10:31:44 by noctis            #+#    #+#             */
-/*   Updated: 2025/03/13 08:38:53 by noctis           ###   ########.fr       */
+/*   Created: 2025/03/14 11:39:40 by aakritah          #+#    #+#             */
+/*   Updated: 2025/03/14 12:10:06 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,10 @@ int	main(int ac, char **ar)
 {
 	t_list2	data;
 
-	atexit(leaks);
 	ft_arguments(ac, ar, &data);
 	ft_initialize(&data);
 	mlx_event(&data);
 	ft_render(&data);
 	mlx_loop(data.ptr);
 	return (0);
-}
-
-void	leaks(void)
-{
-	system("leaks fractol");
 }
