@@ -6,7 +6,7 @@
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:25:38 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/14 11:43:34 by aakritah         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:09:59 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	key_press(int button, t_list2 *data)
 
 int	mouse_hook(int button, int x, int y, t_list2 *data)
 {
+	(void)x;
+	(void)y;
 	if (button == 4)
 		data->zoom *= 1.2;
 	else if (button == 5)

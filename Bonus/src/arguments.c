@@ -6,7 +6,7 @@
 /*   By: aakritah <aakritah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:39:12 by aakritah          #+#    #+#             */
-/*   Updated: 2025/03/14 13:53:13 by aakritah         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:08:55 by aakritah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_arguments(int ac, char **ar, t_list2 *data)
 		data->f = 2;
 		data->name = ar[1];
 	}
-	if (ac == 2 && ft_check("burningship", ar[1]) == 1)
+	else if (ac == 2 && ft_check("burningship", ar[1]) == 1)
 	{
 		data->f = 3;
 		data->name = ar[1];
